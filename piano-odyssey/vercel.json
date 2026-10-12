@@ -1,3 +1,8 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/about-yunzhen", "destination": "/founder", "permanent": true },
+    { "source": "/theadventure", "destination": "/#lessons", "permanent": true },
+    { "source": "/contact", "destination": "/#enquire", "permanent": true }
+  ]
 }
