@@ -4,15 +4,30 @@
   var contact = window.SITE_CONTACT || {};
   var folders = { odyssey: "../piano-odyssey/", happyFeet: "../happy-feet/" };
 
+  // On the live sites, addresses are kept clean: no "index.html" and no
+  // ".html". The local preview keeps the file names so pages open from disk.
+  function clean(path) {
+    return path.replace(/(^|\/)index\.html/, "$1").replace(/\.html(?=$|#|\?)/, "");
+  }
+
   // Point cross-site links at the configured domains, when there are any.
   document.querySelectorAll("a[data-site]").forEach(function (link) {
     var site = link.getAttribute("data-site");
     var home = homes[site];
     var href = link.getAttribute("href");
     if (home && href.indexOf(folders[site]) === 0) {
-      link.setAttribute("href", home + href.slice(folders[site].length));
+      link.setAttribute("href", home + clean(href.slice(folders[site].length)));
     }
   });
+
+  // Links within this site.
+  if (homes.odyssey || homes.happyFeet) {
+    document.querySelectorAll("a[href]:not([data-site])").forEach(function (link) {
+      var href = link.getAttribute("href");
+      if (/^(https?:|mailto:|tel:|#|\/)/.test(href) || href.indexOf(".html") === -1) return;
+      link.setAttribute("href", "/" + clean(href));
+    });
+  }
 
   // Mobile navigation.
   var toggle = document.querySelector(".nav-toggle");
