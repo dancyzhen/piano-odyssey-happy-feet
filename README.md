@@ -22,23 +22,20 @@ Then open <http://localhost:4321>. Press Ctrl+C in the terminal to stop.
 
 ## How the two sites link
 
-Each folder is a complete, self-contained site. Links between them are marked
-with `data-site` in the HTML and use relative paths (`../happy-feet/…`), which
-work whenever the two folders sit side by side: locally, or in one GitHub Pages
-repository.
+Each folder is a complete, self-contained site, published on its own address:
 
-When each site gets its own domain, set the addresses in **both** copies of
-`assets/js/config.js`:
+| Site | Vercel project | Folder | Live address |
+| --- | --- | --- | --- |
+| The Piano Odyssey | `the-piano-odyssey-sg` | `piano-odyssey/` | https://the-piano-odyssey-sg.vercel.app |
+| Happy Feet | `happy-feet-sg` | `happy-feet/` | https://happy-feet-sg.vercel.app |
 
-```js
-window.SITE_HOMES = {
-  odyssey: "https://www.thepianoodyssey.sg/",
-  happyFeet: "https://<confirmed Happy Feet domain>/"
-};
-```
+Both projects deploy from this one GitHub repository; every push to `main`
+republishes both.
 
-`happyfeet.sg` and `happyfeet.com.sg` are candidates only; ownership is not yet
-verified, so no Happy Feet domain is written into the site.
+Links between the sites are marked with `data-site` in the HTML and written as
+relative paths (`../happy-feet/...`), which the local preview uses. On the live
+sites they are pointed at the addresses in `assets/js/config.js`. When the real
+domains are ready, change the two addresses there, in **both** copies.
 
 ## Shared files
 
