@@ -26,7 +26,7 @@ Each folder is a complete, self-contained site, published on its own address:
 
 | Site | Vercel project | Folder | Live address |
 | --- | --- | --- | --- |
-| The Piano Odyssey | `the-piano-odyssey-sg` | `piano-odyssey/` | https://the-piano-odyssey-sg.vercel.app |
+| The Piano Odyssey | `the-piano-odyssey-sg` | `piano-odyssey/` | https://www.thepianoodyssey.sg |
 | Happy Feet | `happy-feet-sg` | `happy-feet/` | https://happy-feet-sg.vercel.app |
 
 Both projects deploy from this one GitHub repository; every push to `main`

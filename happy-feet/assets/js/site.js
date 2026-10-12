@@ -30,36 +30,59 @@
     });
   }
 
-  // Enquiry forms prepare an email in the visitor's own app. Nothing is sent
-  // or stored by the website itself.
+  // Enquiry forms send straight from the page. Each one is filed into the
+  // studio's enquiries form, which emails the owner.
+  var enquiry = window.SITE_ENQUIRY || {};
   document.querySelectorAll("form[data-enquiry]").forEach(function (form) {
+    var status = form.querySelector(".form-status");
+    var button = form.querySelector('button[type="submit"]');
+    var buttonText = button.textContent;
+
     form.addEventListener("submit", function (event) {
       event.preventDefault();
+      status.classList.remove("show", "error");
       if (!form.reportValidity()) return;
 
+      var name = "";
+      var email = "";
       var lines = [];
       form.querySelectorAll("[name]").forEach(function (field) {
         var value = field.value.trim();
         if (!value) return;
+        if (field.name === "name") { name = value; return; }
+        if (field.name === "email") { email = value; return; }
         var label = form.querySelector('label[for="' + field.id + '"]');
-        var name = label ? label.firstChild.textContent.trim() : field.name;
-        lines.push(name + ": " + value);
+        lines.push((label ? label.firstChild.textContent.trim() : field.name) + ": " + value);
       });
+      lines.push("Sent from: " + location.href.split("#")[0]);
 
       var subject = form.getAttribute("data-subject") || "Enquiry";
       var interest = form.querySelector('[name="interest"]');
       if (interest && interest.value) subject += " - " + interest.value;
 
-      var status = form.querySelector(".form-status");
-      window.location.href =
-        "mailto:" + contact.email +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(lines.join("\n\n"));
+      var data = new URLSearchParams();
+      data.append(enquiry.name, name);
+      data.append(enquiry.email, email);
+      data.append(enquiry.enquiry, subject);
+      data.append(enquiry.details, lines.join("\n"));
 
-      if (status) {
-        status.classList.add("show");
-        status.focus();
-      }
+      button.disabled = true;
+      button.textContent = "Sending…";
+
+      fetch(enquiry.endpoint, { method: "POST", mode: "no-cors", body: data })
+        .then(function () {
+          form.classList.add("sent");
+          status.textContent = "Thank you. Your enquiry has been sent, and I will reply by email soon.";
+          status.classList.add("show");
+          status.focus();
+        })
+        .catch(function () {
+          button.disabled = false;
+          button.textContent = buttonText;
+          status.textContent = "Sorry, your enquiry could not be sent. Please check your connection and try again, or email " + contact.email + ".";
+          status.classList.add("show", "error");
+          status.focus();
+        });
     });
   });
 

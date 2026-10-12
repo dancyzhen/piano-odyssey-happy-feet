@@ -1,121 +1,181 @@
-/* Happy Feet: the same paper and ink, with an aged-gold seal and accent. */
+/* Happy Feet: page-specific pieces, built on the tokens in base.css. */
 
-:root {
-  --accent: var(--gold);
-  --seal: var(--gold);
-  --seal-ink: var(--ink-900);
-}
+/* ---------- Home hero: full-width sunflower band ---------- */
 
-/* Solid actions keep the oxblood of the parent brand so they stay legible. */
-.btn { background: var(--oxblood); border-color: var(--oxblood); }
-.btn.ghost { background: none; border-color: transparent; border-bottom-color: var(--accent); }
-
-.hero { padding-top: var(--s6); }
-.hero h1 em { color: var(--oxblood); }
-
-/* The rhythm mark, drawn as one fine line. */
-.shapes {
-  width: 100%;
-  max-width: var(--measure);
-  margin: 0 auto;
-}
-.shapes .disc,
-.shapes .pill,
-.shapes .dot { display: none; }
-.shapes svg {
-  width: 180px;
-  color: var(--gold);
-  stroke-width: 2;
-}
-
-.wave-rule { display: none; }
-
-.cards {
+.home-hero { background: var(--sun-500); padding: var(--s7) 0; }
+.home-hero .wrap {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--s5);
+  grid-template-columns: 6fr 5fr;
+  gap: var(--s6);
+  align-items: center;
 }
-.card { border-top: 1px solid var(--rule); padding-top: var(--s3); }
-.card .do {
-  font: 400 0.68rem var(--ui);
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--ink-500);
-  display: block;
-  margin-bottom: var(--s2);
+.home-hero .eyebrow { color: var(--navy-600); }
+.home-hero h1 { font-size: clamp(48px, 6.4vw, 88px); line-height: 1.05; }
+/* Rose 600 is too faint on sunflower, so the headline uses the darker rose here. */
+.home-hero h1 em { color: var(--rose-700); display: block; }
+.home-hero .lede { color: var(--ink-900); max-width: 34em; }
+.home-hero .btn.secondary:hover { background: rgba(255, 255, 255, .45); }
+.home-hero :focus-visible { box-shadow: 0 0 0 2px var(--sun-500), 0 0 0 5px var(--navy-600); }
+
+/* ---------- Programme cards, colour coded ---------- */
+
+.programme-grid {
+  list-style: none;
+  margin: var(--s5) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: var(--s3);
 }
+.programme {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  border-radius: 24px;
+  padding: var(--s4);
+  color: var(--ink-900);
+  text-decoration: none;
+  transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+}
+.programme:hover {
+  color: var(--ink-900);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px -14px rgba(15, 22, 64, .30);
+}
+.programme:focus-visible { border-radius: 24px; }
+.programme h3 { margin-bottom: var(--s1); }
+.programme p { color: var(--ink-700); margin-bottom: var(--s3); }
+.programme .more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--navy-600);
+}
+.programme .badge { background: rgba(255, 255, 255, .75); }
+
+.tint-rose { background: var(--rose-100); }
+.tint-rose .badge { color: var(--rose-700); }
+.tint-sun { background: var(--sun-100); }
+.tint-sun .badge { color: var(--sun-700); }
+.tint-blush { background: var(--blush-100); }
+.tint-blush .badge { color: var(--rose-700); }
+.tint-plain { background: var(--cream-50); box-shadow: inset 0 0 0 1px var(--cream-300); }
+.tint-plain .badge { background: var(--navy-100); }
+.tint-navy,
+.tint-navy:hover { background: var(--navy-600); color: #fff; }
+.tint-navy h3,
+.tint-navy p,
+.tint-navy .more { color: #fff; }
+.tint-navy .badge { background: var(--sun-500); color: var(--navy-600); }
+
+/* ---------- Early years fees: navy card ---------- */
 
 .fees {
-  background: var(--bone-100);
-  border: 1px solid var(--rule-soft);
+  background: var(--navy-600);
+  color: #fff;
+  border-radius: 24px;
   padding: var(--s5) var(--s4);
 }
 .fees .offer {
-  display: block;
-  font: 400 0.68rem var(--ui);
-  letter-spacing: 0.3em;
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--sun-500);
+  color: var(--navy-600);
+  font: 700 12px/1.3 var(--body);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--oxblood);
-  margin-bottom: var(--s2);
+  margin-bottom: var(--s3);
 }
-.fees .price {
-  font: 300 3.6rem var(--display);
-  line-height: 1;
-  color: var(--ink-900);
-  margin: 0 0 var(--s2);
-}
-.fees .price small { font: italic 400 1.1rem var(--display); color: var(--ink-700); }
+.fees .price { font: 400 56px/1 var(--display); margin: 0 0 var(--s2); }
+.fees .price small { font: 400 17px var(--body); color: var(--navy-200); }
 .fees dl { margin: var(--s4) 0 0; }
 .fees dl div {
   display: flex;
   justify-content: space-between;
   gap: var(--s3);
   padding: 12px 0;
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--navy-500);
 }
-.fees dt {
-  font: 400 0.66rem var(--ui);
-  letter-spacing: 0.24em;
+.fees dt { color: var(--navy-200); font-size: 15px; }
+.fees dd { margin: 0; text-align: right; font-weight: 500; }
+.fees :focus-visible { box-shadow: 0 0 0 2px var(--navy-600), 0 0 0 5px var(--focus); }
+
+/* ---------- Programme pages ---------- */
+
+.page-hero { padding: var(--s6) 0 var(--section); }
+.page-hero h1 { max-width: 16em; }
+.page-hero .lede { max-width: 40em; }
+.back-link { margin-bottom: var(--s5); }
+.back-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.formats { list-style: none; margin: var(--s5) 0 0; padding: 0; display: grid; gap: var(--s3); }
+.formats > li {
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  gap: var(--s4);
+  background: var(--cream-50);
+  border: 1px solid var(--cream-300);
+  border-radius: 24px;
+  padding: var(--s4);
+}
+.formats .do {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--sun-100);
+  color: var(--sun-700);
+  font: 700 12px/1.3 var(--body);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--ink-500);
-  padding-top: 5px;
+  margin-bottom: var(--s2);
 }
-.fees dd { margin: 0; text-align: right; }
+.formats h3 { margin: 0; }
+.formats p { color: var(--ink-700); }
 
-.audiences { list-style: none; margin: 0; padding: 0; }
-.audiences li {
-  padding: 12px 0;
-  border-top: 1px solid var(--rule-soft);
-  font: 500 1.35rem var(--display);
-  color: var(--ink-900);
-}
-
-.flow { list-style: none; margin: 0; padding: 0; counter-reset: flow; }
+.flow { list-style: none; margin: var(--s5) 0 0; padding: 0; counter-reset: flow; max-width: 44em; }
 .flow li {
   counter-increment: flow;
   display: grid;
-  grid-template-columns: 40px 1fr;
-  gap: var(--s2);
+  grid-template-columns: 48px 1fr;
+  gap: var(--s3);
   padding: var(--s3) 0;
-  border-top: 1px solid var(--rule-soft);
+  border-top: 1px solid var(--cream-300);
+  color: var(--ink-700);
 }
 .flow li::before {
-  content: counter(flow, decimal-leading-zero);
-  font: 400 0.72rem var(--ui);
-  letter-spacing: 0.2em;
-  color: var(--ink-500);
-  padding-top: 7px;
+  content: counter(flow);
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background: var(--navy-600);
+  color: #fff;
+  font: 400 22px/48px var(--display);
+  text-align: center;
 }
-.flow strong { display: block; font: 500 1.35rem var(--display); }
+.flow strong { display: block; color: var(--navy-600); font-size: 20px; }
 
-.sister-band .photo { max-width: 26rem; }
-
-@media (max-width: 860px) {
-  .cards { grid-template-columns: 1fr; gap: var(--s4); }
-  .hero { padding-top: var(--s5); }
+@media (max-width: 900px) {
+  .home-hero { padding: var(--s5) 0 var(--s6); }
+  .home-hero .wrap { grid-template-columns: 1fr; gap: var(--s5); }
+  .formats > li { grid-template-columns: 1fr; gap: var(--s2); padding: var(--s3); }
 }
 
-/* On wide screens the three cards reach past the reading column. */
-@media (min-width: 1100px) {
-  .cards { margin-inline: calc((var(--measure) - var(--measure-wide)) / 2); }
+@media (prefers-reduced-motion: reduce) {
+  .programme:hover { transform: none; }
 }
