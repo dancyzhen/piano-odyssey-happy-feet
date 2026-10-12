@@ -1,5 +1,5 @@
-/* Shared foundation for The Piano Odyssey and Happy Feet.
-   Keep this file identical in both sites; brand differences live in theme.css.
+/* The Piano Odyssey: foundation styles. Happy Feet has its own stylesheet
+   and its own brand; changes here do not affect it.
 
    Style: warm paper, ink text, one seal-coloured accent, hairline rules,
    a single reading column. Display in Cormorant Garamond, text in Spectral,
@@ -525,3 +525,7 @@ strong { font-weight: 500; color: var(--ink-900); }
   html { scroll-behavior: auto; }
   .btn { transition: none; }
 }
+
+/* After an enquiry is sent, only the confirmation remains. */
+.form.sent > *:not(.form-status) { display: none; }
+.form-status.error { border-left-color: var(--oxblood); color: var(--oxblood-dark); }
