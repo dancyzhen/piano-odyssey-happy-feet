@@ -8,8 +8,8 @@
 // When the real domains are ready, change these two lines (keep the final
 // slash) and update both sites together.
 window.SITE_HOMES = {
-  odyssey: "https://www.thepianoodyssey.sg/",
-  happyFeet: "https://happy-feet-sg.vercel.app/"
+  odyssey: "https://thepianoodyssey.sg/",
+  happyFeet: "https://happyfeet.sg/"
 };
 
 // On your own laptop the two folders sit side by side, so keep the relative links.
