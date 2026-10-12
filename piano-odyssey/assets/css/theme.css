@@ -1,0 +1,27 @@
+/* The Piano Odyssey: oxblood seal and accent. */
+
+:root {
+  --accent: var(--oxblood);
+  --seal: var(--oxblood);
+  --seal-ink: var(--bone-50);
+}
+
+.tagline-line {
+  font: italic 400 1.75rem var(--display);
+  line-height: 1.2;
+  color: var(--ink-900);
+  margin-bottom: var(--s2);
+}
+
+.sister-band .mark-large {
+  width: 120px;
+  color: var(--gold);
+  stroke-width: 2.5;
+}
+
+.credentials { list-style: none; margin: 0; padding: 0; }
+.credentials li { padding: var(--s2) 0; border-top: 1px solid var(--rule-soft); }
+.credentials strong {
+  display: block;
+  font: 500 1.3rem var(--display);
+}

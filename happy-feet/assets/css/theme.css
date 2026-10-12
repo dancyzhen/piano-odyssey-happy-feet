@@ -1,0 +1,121 @@
+/* Happy Feet: the same paper and ink, with an aged-gold seal and accent. */
+
+:root {
+  --accent: var(--gold);
+  --seal: var(--gold);
+  --seal-ink: var(--ink-900);
+}
+
+/* Solid actions keep the oxblood of the parent brand so they stay legible. */
+.btn { background: var(--oxblood); border-color: var(--oxblood); }
+.btn.ghost { background: none; border-color: transparent; border-bottom-color: var(--accent); }
+
+.hero { padding-top: var(--s6); }
+.hero h1 em { color: var(--oxblood); }
+
+/* The rhythm mark, drawn as one fine line. */
+.shapes {
+  width: 100%;
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+.shapes .disc,
+.shapes .pill,
+.shapes .dot { display: none; }
+.shapes svg {
+  width: 180px;
+  color: var(--gold);
+  stroke-width: 2;
+}
+
+.wave-rule { display: none; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s5);
+}
+.card { border-top: 1px solid var(--rule); padding-top: var(--s3); }
+.card .do {
+  font: 400 0.68rem var(--ui);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+  display: block;
+  margin-bottom: var(--s2);
+}
+
+.fees {
+  background: var(--bone-100);
+  border: 1px solid var(--rule-soft);
+  padding: var(--s5) var(--s4);
+}
+.fees .offer {
+  display: block;
+  font: 400 0.68rem var(--ui);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--oxblood);
+  margin-bottom: var(--s2);
+}
+.fees .price {
+  font: 300 3.6rem var(--display);
+  line-height: 1;
+  color: var(--ink-900);
+  margin: 0 0 var(--s2);
+}
+.fees .price small { font: italic 400 1.1rem var(--display); color: var(--ink-700); }
+.fees dl { margin: var(--s4) 0 0; }
+.fees dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s3);
+  padding: 12px 0;
+  border-top: 1px solid var(--rule);
+}
+.fees dt {
+  font: 400 0.66rem var(--ui);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+  padding-top: 5px;
+}
+.fees dd { margin: 0; text-align: right; }
+
+.audiences { list-style: none; margin: 0; padding: 0; }
+.audiences li {
+  padding: 12px 0;
+  border-top: 1px solid var(--rule-soft);
+  font: 500 1.35rem var(--display);
+  color: var(--ink-900);
+}
+
+.flow { list-style: none; margin: 0; padding: 0; counter-reset: flow; }
+.flow li {
+  counter-increment: flow;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: var(--s2);
+  padding: var(--s3) 0;
+  border-top: 1px solid var(--rule-soft);
+}
+.flow li::before {
+  content: counter(flow, decimal-leading-zero);
+  font: 400 0.72rem var(--ui);
+  letter-spacing: 0.2em;
+  color: var(--ink-500);
+  padding-top: 7px;
+}
+.flow strong { display: block; font: 500 1.35rem var(--display); }
+
+.sister-band .photo { max-width: 26rem; }
+
+@media (max-width: 860px) {
+  .cards { grid-template-columns: 1fr; gap: var(--s4); }
+  .hero { padding-top: var(--s5); }
+}
+
+/* On wide screens the three cards reach past the reading column. */
+@media (min-width: 1100px) {
+  .cards { margin-inline: calc((var(--measure) - var(--measure-wide)) / 2); }
+}
