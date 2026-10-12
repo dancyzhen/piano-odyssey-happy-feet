@@ -25,3 +25,56 @@
   display: block;
   font: 500 1.3rem var(--display);
 }
+
+/* ---------- Registration page ---------- */
+
+.page-hero .wrap {
+  display: block;
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+}
+.page-hero { padding-top: var(--s6); padding-bottom: var(--s6); }
+
+.register { gap: var(--s5); }
+.register fieldset {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+  padding: var(--s4) 0 0;
+  display: grid;
+  gap: var(--s3);
+  min-width: 0;
+}
+.register legend {
+  font: 500 1.75rem var(--display);
+  color: var(--ink-900);
+  padding: 0 var(--s2) 0 0;
+}
+.register .label {
+  display: block;
+  font: 400 0.68rem var(--ui);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-700);
+  margin-bottom: var(--s1);
+}
+.register textarea.short { min-height: 72px; }
+.choices { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s4); }
+.choices.stacked { flex-direction: column; }
+.choices label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font: 400 1.05rem var(--serif);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-900);
+  margin: 0;
+  padding: 4px 0;
+  cursor: pointer;
+}
+.choices input { width: 18px; height: 18px; accent-color: var(--oxblood); flex: none; padding: 0; border: 0; }
+.register .other { margin-top: var(--s1); }
+.register-done { padding: var(--s4) 0; }
+.register-done:focus { outline: none; }
+
+[hidden] { display: none !important; }
