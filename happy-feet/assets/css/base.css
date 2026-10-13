@@ -107,30 +107,37 @@ a:hover { color: var(--rose-700); }
 
 .icon { width: 20px; height: 20px; flex: none; display: inline-block; }
 
-/* ---------- Logo: the wave wordmark ---------- */
+/* ---------- Logo: the ball bounces along the name and lands on the e's ---------- */
 
 .logo {
   display: inline-flex;
   flex-direction: column;
-  gap: 0.28em;
-  padding: 0.12em 0;
-  font: 400 34px/1 var(--display);
-  color: var(--navy-600);
+  gap: 6px;
   text-decoration: none;
+  color: var(--navy-600);
 }
-.logo:hover { color: var(--navy-600); }
-.logo-word { display: inline-flex; align-items: baseline; white-space: nowrap; }
-.logo-word span { display: inline-block; }
-.logo-word .f { color: var(--rose-600); }
+.logo-art { height: 56px; width: auto; overflow: visible; }
+.logo-art text { font: 400 60px var(--display); }
+.logo-ink { fill: var(--navy-600); }
+.logo-e { fill: var(--rose-600); }
+.logo-ball { fill: var(--sun-500); }
+.logo-trail {
+  fill: none;
+  stroke: var(--navy-600);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-dasharray: 0.1 11;
+}
 .logo-tag {
-  font: 600 max(9px, 0.2em)/1.3 var(--body);
+  font: 600 10px/1.3 var(--body);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-500);
 }
-.logo.reversed,
-.logo.reversed:hover { color: #fff; }
-.logo.reversed .f { color: var(--sun-500); }
+/* On navy: white ink, sunflower e's. */
+.logo.reversed .logo-ink { fill: #fff; }
+.logo.reversed .logo-e { fill: var(--sun-500); }
+.logo.reversed .logo-trail { stroke: #fff; }
 .logo.reversed .logo-tag { color: var(--navy-200); }
 
 /* ---------- Header ---------- */
@@ -378,7 +385,7 @@ a:hover { color: var(--rose-700); }
   padding: var(--s6) 0 var(--s4);
   font-size: 15px;
 }
-.site-footer .logo { font-size: 40px; }
+.site-footer .logo-art { height: 68px; }
 .site-footer p { margin-top: var(--s3); max-width: 30em; }
 .site-footer a:not(.logo) { color: #fff; text-decoration-color: rgba(255, 255, 255, .35); }
 .site-footer a:not(.logo):hover { color: var(--sun-300); }
@@ -430,8 +437,8 @@ a:hover { color: var(--rose-700); }
 @media (max-width: 860px) {
   :root { --section: 56px; }
   .site-header .wrap { min-height: 72px; }
-  .logo { font-size: 28px; }
-  .site-footer .logo { font-size: 34px; }
+  .logo-art { height: 48px; }
+  .site-footer .logo-art { height: 60px; }
   .wrap.split.even,
   .cards,
   .footer-grid,
@@ -457,3 +464,6 @@ a:hover { color: var(--rose-700); }
 /* After an enquiry is sent, only the confirmation remains. */
 .form.sent > *:not(.form-status) { display: none; }
 .form-status.error { background: var(--rose-100); color: var(--error); }
+
+.site-footer .footer-tagline { font: 400 26px/1.2 var(--display); color: var(--sun-500); margin-top: var(--s3); }
+.site-footer .footer-tagline + p { margin-top: var(--s1); }

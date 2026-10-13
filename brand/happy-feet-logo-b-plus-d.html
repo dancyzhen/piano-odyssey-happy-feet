@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Feet logo: bounce + dancing letters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700&display=swap">
+<style>
+  :root { --navy:#1E2A78; --sun:#FFC21A; --rose:#E8365F; --cream:#FBF7F2; --line:#E4DCCF; --ink:#363A55; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: var(--ink); font: 400 16px/1.5 "DM Sans", system-ui, sans-serif; padding: 32px; }
+  h1 { font: 400 34px/1.1 "DM Serif Display", Georgia, serif; color: var(--navy); margin: 0 0 6px; }
+  .intro { margin: 0 0 28px; max-width: 62ch; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1380px; }
+  .opt { border: 1px solid var(--line); border-radius: 24px; overflow: hidden; background: #fff; }
+  .opt header { display: flex; align-items: baseline; gap: 12px; padding: 18px 24px 0; }
+  .letter { font: 400 30px/1 "DM Serif Display", Georgia, serif; color: var(--rose); }
+  .name { font-weight: 700; color: var(--navy); font-size: 18px; }
+  .why { padding: 4px 24px 16px; margin: 0; font-size: 15px; min-height: 86px; }
+  .stage { display: flex; align-items: center; justify-content: center; padding: 30px 20px; background: var(--cream); border-top: 1px solid var(--line); min-height: 190px; }
+  .stage.dark { background: var(--navy); }
+  .stage svg { max-width: 100%; height: auto; }
+  .icons { display: flex; align-items: center; gap: 18px; padding: 18px 24px; border-top: 1px solid var(--line); font-size: 13px; }
+  .icons span { margin-left: auto; text-align: right; }
+  @media (max-width: 1000px) { .grid { grid-template-columns: 1fr; } body { padding: 18px; } }
+</style>
+</head>
+<body>
+<h1>Happy Feet: the bounce + dancing letters</h1>
+<p class="intro">Three ways to put B and D together. Each is shown on cream, on navy, and as a square icon at profile-picture and browser-tab size.</p>
+<div class="grid" id="grid"></div>
+
+<script>
+const N = '#1E2A78', S = '#FFC21A', R = '#E8365F', W = '#FFFFFF', TAG = '#63677E', TAGD = '#CDD4F3';
+const SERIF = "'DM Serif Display', Georgia, serif", SANS = "'DM Sans', system-ui, sans-serif";
+const NS = 'http://www.w3.org/2000/svg';
+
+// Measures a string in the logo typeface so letters can be placed one by one.
+const probe = document.createElementNS(NS, 'svg');
+probe.setAttribute('width', 0); probe.setAttribute('height', 0);
+probe.style.position = 'absolute';
+document.body.appendChild(probe);
+function width(text, size) {
+  const t = document.createElementNS(NS, 'text');
+  t.setAttribute('font-family', SERIF); t.setAttribute('font-size', size);
+  t.textContent = text.replace(/ /g, ' ');
+  probe.appendChild(t);
+  const w = t.getComputedTextLength();
+  t.remove();
+  return w;
+}
+
+// "happy feet" with the two e's tilted like a dancing pair.
+// Returns the drawing plus where each e sits, so a ball can land on them.
+function wordmark(x, baseline, size, ink, e1, e2) {
+  const parts = [['happy f', ink, 0, 0], ['e', e1, -14, -0.05], ['e', e2, 12, 0.03], ['t', ink, 0, 0]];
+  let cx = x, out = '', es = [];
+  for (const [txt, fill, rot, dy] of parts) {
+    const w = width(txt, size);
+    const y = baseline + dy * size;
+    const mid = cx + w / 2;
+    const tr = rot ? ` transform="rotate(${rot} ${mid} ${y - size * 0.24})"` : '';
+    out += `<text x="${cx}" y="${y}" font-family="${SERIF}" font-size="${size}" fill="${fill}"${tr}>${txt.replace(/ /g, '&#160;')}</text>`;
+    if (txt === 'e') es.push(mid);
+    cx += w;
+  }
+  return { svg: out, end: cx, es };
+}
+
+const tagline = (x, y, fill, anchor = 'start') =>
+  `<text x="${x}" y="${y}" font-family="${SANS}" font-weight="600" font-size="11" letter-spacing="2.4" fill="${fill}" text-anchor="${anchor}">MUSIC &amp; MOVEMENT</text>`;
+
+// The bounce mark from direction B, drawn in a 100 x 100 box.
+const bounce = (ink, ball) => `
+  <path d="M8 82 Q24 6 42 82 Q54 34 68 82 Q76 56 86 82" fill="none" stroke="${ink}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="25" cy="22" r="13" fill="${ball}"/>`;
+const tile = (size) => `<svg width="${size}" height="${size}" viewBox="0 0 100 100"><rect width="100" height="100" rx="24" fill="${N}"/><g transform="translate(14 14) scale(0.72)">${bounce(W, S)}</g></svg>`;
+
+// 1. Mark beside the word.
+function sideBySide(dark) {
+  const ink = dark ? W : N, e = dark ? S : R;
+  const wm = wordmark(108, 66, 56, ink, e, e);
+  return `<svg width="${Math.ceil(wm.end + 6)}" height="106" viewBox="0 0 ${Math.ceil(wm.end + 6)} 106">
+    <g transform="translate(0 2) scale(0.92)">${bounce(ink, S)}</g>${wm.svg}${tagline(110, 100, dark ? TAGD : TAG)}</svg>`;
+}
+
+// 2. The ball bounces along the word and lands on the two e's, tipping them.
+function landing(dark) {
+  const ink = dark ? W : N, e = dark ? S : R;
+  const size = 60, base = 118, x0 = 12;
+  const wm = wordmark(x0, base, size, ink, e, e);
+  const top = base - size * 0.80;                      // just above the tall letters
+  const a = x0 + 4, b = x0 + width('happ', size), c = x0 + width('happy f', size) - 16, d = wm.es[0] + 6;
+  const hop = (p, q, h) => `Q${(p + q) / 2} ${top - h} ${q} ${top}`;
+  const trail = `M${a} ${top} ${hop(a, b, 86)} ${hop(b, c, 52)} ${hop(c, d, 26)}`;
+  const w = Math.ceil(wm.end + 12);
+  return `<svg width="${w}" height="158" viewBox="0 0 ${w} 158">
+    <path d="${trail}" fill="none" stroke="${ink}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.1 11"/>
+    <circle cx="${d + 3}" cy="${top - 13}" r="11" fill="${S}"/>
+    ${wm.svg}${tagline(x0 + 2, 153, dark ? TAGD : TAG)}</svg>`;
+}
+
+// 3. Stacked: mark above the word, for square spaces.
+function stacked(dark) {
+  const ink = dark ? W : N, e = dark ? S : R;
+  const size = 50;
+  const total = width('happy feet', size);
+  const wm = wordmark(10, 138, size, ink, e, e);
+  const w = Math.ceil(total + 20);
+  return `<svg width="${w}" height="178" viewBox="0 0 ${w} 178">
+    <g transform="translate(${w / 2 - 44} 0) scale(0.88)">${bounce(ink, S)}</g>${wm.svg}${tagline(w / 2, 171, dark ? TAGD : TAG, 'middle')}</svg>`;
+}
+
+const options = [
+  { letter: '1', name: 'Side by side', draw: sideBySide,
+    why: 'The bounce mark sits beside the lowercase name with its two dancing e’s. The simplest combination, and the easiest to use everywhere.' },
+  { letter: '2', name: 'The ball lands on the e’s', draw: landing,
+    why: 'One picture: the ball bounces along the word, each hop shorter, and lands on the two e’s, which is why they tip. The most distinctive, best at larger sizes.' },
+  { letter: '3', name: 'Stacked', draw: stacked,
+    why: 'The mark above the name, centred. Made for square spaces such as profile pictures, stickers and T-shirts.' },
+];
+
+document.fonts.ready.then(() => {
+  document.getElementById('grid').innerHTML = options.map(o => `
+    <section class="opt">
+      <header><span class="letter">${o.letter}</span><span class="name">${o.name}</span></header>
+      <p class="why">${o.why}</p>
+      <div class="stage">${o.draw(false)}</div>
+      <div class="stage dark">${o.draw(true)}</div>
+      <div class="icons">${tile(84)}${tile(32)}<span>Square icon at<br>profile and tab size</span></div>
+    </section>`).join('');
+  document.body.dataset.ready = '1';
+});
+</script>
+</body>
+</html>

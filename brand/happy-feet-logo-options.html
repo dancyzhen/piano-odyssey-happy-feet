@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Feet logo options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700&display=swap">
+<style>
+  :root { --navy:#1E2A78; --navy9:#0F1640; --sun:#FFC21A; --rose:#E8365F; --cream:#FBF7F2; --line:#E4DCCF; --ink:#363A55; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: var(--ink); font: 400 16px/1.5 "DM Sans", system-ui, sans-serif; padding: 32px; }
+  h1 { font: 400 34px/1.1 "DM Serif Display", Georgia, serif; color: var(--navy); margin: 0 0 6px; }
+  .intro { margin: 0 0 28px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 1180px; }
+  .opt { border: 1px solid var(--line); border-radius: 24px; overflow: hidden; background: #fff; }
+  .opt header { display: flex; align-items: baseline; gap: 12px; padding: 18px 24px 0; }
+  .letter { font: 400 30px/1 "DM Serif Display", Georgia, serif; color: var(--rose); }
+  .name { font-weight: 700; color: var(--navy); font-size: 18px; }
+  .why { padding: 4px 24px 16px; margin: 0; font-size: 15px; }
+  .stage { display: flex; align-items: center; justify-content: center; padding: 34px 20px; background: var(--cream); border-top: 1px solid var(--line); }
+  .stage.dark { background: var(--navy); padding: 26px 20px; }
+  .icons { display: flex; align-items: center; gap: 18px; padding: 18px 24px; border-top: 1px solid var(--line); font-size: 13px; }
+  .icons span { margin-left: auto; text-align: right; }
+  .lock { display: flex; align-items: center; gap: 18px; }
+  .lock svg { flex: none; }
+  .word { font: 400 54px/0.95 "DM Serif Display", Georgia, serif; color: var(--navy); white-space: nowrap; }
+  .tag { display: block; font: 600 11px/1.4 "DM Sans", sans-serif; letter-spacing: 0.2em; text-transform: uppercase; color: #63677E; margin-top: 10px; }
+  .dark .word { color: #fff; }
+  .dark .tag { color: #CDD4F3; }
+  .dark .word { font-size: 40px; }
+  .ee { display: inline-block; }
+  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } body { padding: 18px; } .word { font-size: 44px; } }
+</style>
+</head>
+<body>
+<h1>Happy Feet: four logo directions</h1>
+<p class="intro">Each row shows the logo on cream, on navy, and as a square icon at profile-picture and browser-tab size. Colours and typeface stay the same as the website.</p>
+<div class="grid" id="grid"></div>
+<script>
+const N = '#1E2A78', S = '#FFC21A', R = '#E8365F', W = '#FFFFFF';
+
+// A: two beamed notes whose heads step like a pair of feet.
+const notes = (ink, a, b) => `
+  <ellipse cx="30" cy="76" rx="14" ry="10" transform="rotate(-22 30 76)" fill="${a}"/>
+  <ellipse cx="68" cy="64" rx="14" ry="10" transform="rotate(-22 68 64)" fill="${b}"/>
+  <path d="M43 72 V26 L81 14 V60" fill="none" stroke="${ink}" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M43 26 L81 14 V26 L43 38 Z" fill="${ink}"/>`;
+
+// B: a ball bouncing in time, each landing a beat.
+const bounce = (ink, ball) => `
+  <path d="M8 82 Q24 6 42 82 Q54 34 68 82 Q76 56 86 82" fill="none" stroke="${ink}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="25" cy="22" r="13" fill="${ball}"/>`;
+
+// C: two footprints and a smile.
+const smile = (ink) => `
+  <ellipse cx="35" cy="34" rx="9" ry="12" transform="rotate(-12 35 34)" fill="${ink}"/>
+  <circle cx="31" cy="54" r="5.5" fill="${ink}"/>
+  <ellipse cx="65" cy="34" rx="9" ry="12" transform="rotate(12 65 34)" fill="${ink}"/>
+  <circle cx="69" cy="54" r="5.5" fill="${ink}"/>
+  <path d="M28 68 Q50 90 72 68" fill="none" stroke="${ink}" stroke-width="7" stroke-linecap="round"/>`;
+
+const svg = (inner, size, extra = '') => `<svg width="${size}" height="${size}" viewBox="0 0 100 100" ${extra}>${inner}</svg>`;
+const tile = (inner, size, bg) => `<svg width="${size}" height="${size}" viewBox="0 0 100 100"><rect width="100" height="100" rx="24" fill="${bg}"/><g transform="translate(14 14) scale(0.72)">${inner}</g></svg>`;
+const circleTile = (inner, size, bg) => `<svg width="${size}" height="${size}" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="${bg}"/>${inner}</svg>`;
+const word = (html = 'Happy Feet') => `<div><div class="word">${html}</div><span class="tag">Music &amp; movement</span></div>`;
+const ee = (c1, c2) => `happy f<span class="ee" style="color:${c1};transform:translateY(-0.05em) rotate(-14deg)">e</span><span class="ee" style="color:${c2};transform:translateY(0.03em) rotate(12deg)">e</span>t`;
+const eeTile = (size) => `<svg width="${size}" height="${size}" viewBox="0 0 100 100"><rect width="100" height="100" rx="24" fill="${N}"/><g font-family="'DM Serif Display', Georgia, serif" font-size="64" text-anchor="middle"><text x="34" y="70" fill="${W}" transform="rotate(-14 34 50)">e</text><text x="68" y="72" fill="${S}" transform="rotate(12 68 50)">e</text></g></svg>`;
+
+const options = [
+  { letter: 'A', name: 'Dancing notes',
+    why: 'Two joined music notes whose heads look like a pair of feet mid-step. Says music and movement in one mark.',
+    light: `<div class="lock">${svg(notes(N, R, S), 96)}${word()}</div>`,
+    dark: `<div class="lock">${svg(notes(W, S, R), 72)}${word()}</div>`,
+    icons: tile(notes(W, S, R), 84, N) + tile(notes(W, S, R), 32, N) },
+  { letter: 'B', name: 'The bounce',
+    why: 'A ball bouncing in time, each landing a beat getting quicker. Playful, works for every age, nods to the balls used in class.',
+    light: `<div class="lock">${svg(bounce(N, S), 96)}${word()}</div>`,
+    dark: `<div class="lock">${svg(bounce(W, S), 72)}${word()}</div>`,
+    icons: tile(bounce(W, S), 84, N) + tile(bounce(W, S), 32, N) },
+  { letter: 'C', name: 'Happy face',
+    why: 'Two footprints for eyes and a smile: literally happy feet. The friendliest and most child-facing of the four.',
+    light: `<div class="lock">${circleTile(smile(N), 96, S)}${word()}</div>`,
+    dark: `<div class="lock">${circleTile(smile(N), 72, S)}${word()}</div>`,
+    icons: circleTile(smile(N), 84, S) + circleTile(smile(N), 32, S) },
+  { letter: 'D', name: 'Dancing letters',
+    why: 'No picture, just the name in lowercase with the two e’s in “feet” tilting like a dancing pair. The most grown-up and quiet.',
+    light: `<div class="lock">${word(ee(R, R))}</div>`,
+    dark: `<div class="lock">${word(ee(S, S))}</div>`,
+    icons: eeTile(84) + eeTile(32) },
+];
+
+document.getElementById('grid').innerHTML = options.map(o => `
+  <section class="opt">
+    <header><span class="letter">${o.letter}</span><span class="name">${o.name}</span></header>
+    <p class="why">${o.why}</p>
+    <div class="stage">${o.light}</div>
+    <div class="stage dark">${o.dark}</div>
+    <div class="icons">${o.icons}<span>Square icon at<br>profile and tab size</span></div>
+  </section>`).join('');
+</script>
+</body>
+</html>

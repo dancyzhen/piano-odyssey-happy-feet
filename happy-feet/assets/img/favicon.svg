@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <rect width="100" height="100" rx="24" fill="#1E2A78"/>
-  <g font-family="'DM Serif Display', Georgia, 'Times New Roman', serif" font-size="62" text-anchor="middle">
-    <text x="34" y="71" fill="#FFFFFF" transform="rotate(-7 34 50)">H</text>
-    <text x="71" y="71" fill="#FFC21A" transform="rotate(7 71 50)">f</text>
+  <g transform="translate(14 14) scale(0.72)">
+    <path d="M8 82 Q24 6 42 82 Q54 34 68 82 Q76 56 86 82" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="25" cy="22" r="13" fill="#FFC21A"/>
   </g>
 </svg>

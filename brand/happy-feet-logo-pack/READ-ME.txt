@@ -1,0 +1,57 @@
+HAPPY FEET - LOGO PACK
+Music & Movement by The Piano Odyssey
+Made 13 October 2026
+
+TAGLINE
+Step into the music
+
+THE LOGO
+The ball bounces along the name, each hop shorter, and lands on the two e's,
+which is why they tip.
+
+WHICH FILE TO USE
+  Website, posters, flyers, documents
+      happy-feet-logo-colour.png              on white or cream
+      happy-feet-logo-white.png               on navy or dark photos
+      ...-with-tagline.png                    adds the tagline "Step into the music"
+      ...-with-piano-odyssey.png              adds "Music & Movement by The Piano Odyssey"
+  Square spaces (stickers, T-shirts, stamps)
+      happy-feet-logo-stacked-colour.png / -white.png
+  Instagram, Facebook, WhatsApp profile picture
+      happy-feet-profile-navy-1080.png        recommended
+      happy-feet-profile-cream-1080.png
+      happy-feet-profile-sunflower-1080.png
+  Facebook cover, email header
+      happy-feet-banner-navy-1600x500.png
+  App icon, browser tab, very small sizes
+      happy-feet-icon-1024 / 512 / 180 / 32.png, happy-feet-icon.svg
+  The bounce mark on its own
+      happy-feet-mark-colour / -white (.png and .svg)
+
+All logo PNG files have a transparent background, except the profile pictures,
+banner and icons.
+
+COLOURS
+  Navy        #1E2A78   name, trail, backgrounds
+  Sunflower   #FFC21A   the ball; the e's on navy
+  Rose        #E8365F   the e's on white or cream
+  Cream       #FBF7F2   light background
+
+TYPEFACES (free from Google Fonts)
+  DM Serif Display   the name
+  DM Sans            the small line underneath
+
+DO
+  Leave clear space around the logo, about the height of the letter "h".
+  Use the white version on navy or dark photos, the colour version on light.
+  For anything smaller than about 3 cm wide, use the stacked logo or the icon:
+  the dotted trail gets too faint.
+
+DON'T
+  Stretch or squash it, change the colours, straighten the e's, or put the
+  colour version on a busy photo.
+
+FOR A PRINTER
+  The PNG files are large enough for A3 posters. A printer who needs a vector
+  file of the full logo will need the name converted to outlines; ask and it
+  can be prepared. The mark and icon SVG files are already true vectors.
