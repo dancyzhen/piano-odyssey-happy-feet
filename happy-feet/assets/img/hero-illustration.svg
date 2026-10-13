@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 460" role="img" aria-label="Three children moving to music as a ball bounces over their heads.">
+  <rect width="560" height="460" rx="32" fill="#1E2A78"/>
+
+  <!-- Soft shapes behind, for depth -->
+  <circle cx="430" cy="150" r="150" fill="#3A4DB3" opacity="0.45"/>
+  <circle cx="96" cy="372" r="96" fill="#17205E"/>
+
+  <!-- The ball's path: three bounces, each one shorter -->
+  <path d="M34 150 Q112 -6 190 128 Q246 40 302 128 Q342 72 382 122" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-dasharray="0.1 14"/>
+  <circle cx="398" cy="100" r="19" fill="#FFC21A"/>
+
+  <!-- Ground shadows -->
+  <g fill="#0F1640" opacity="0.55">
+    <ellipse cx="128" cy="392" rx="52" ry="9"/>
+    <ellipse cx="286" cy="398" rx="54" ry="9"/>
+    <ellipse cx="444" cy="394" rx="52" ry="9"/>
+  </g>
+
+  <!-- Child one: jumping, arms up -->
+  <g fill="none" stroke="#FBF7F2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M128 232 L88 178 M128 232 L170 184" stroke-width="15"/>
+    <path d="M128 222 L128 296" stroke-width="34"/>
+    <path d="M128 298 L98 352 M128 298 L160 344" stroke-width="16"/>
+  </g>
+  <circle cx="128" cy="184" r="25" fill="#FBF7F2"/>
+
+  <!-- Child two: stepping forward -->
+  <g fill="none" stroke="#E8365F" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M286 262 L242 290 M286 262 L334 236" stroke-width="15"/>
+    <path d="M286 250 L282 324" stroke-width="34"/>
+    <path d="M282 326 L250 388 M282 326 L322 372" stroke-width="16"/>
+  </g>
+  <circle cx="288" cy="212" r="25" fill="#E8365F"/>
+
+  <!-- Child three: balancing on one leg, arms wide -->
+  <g fill="none" stroke="#FFC9D6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M446 240 L396 216 M446 240 L500 256" stroke-width="15"/>
+    <path d="M448 228 L438 300" stroke-width="34"/>
+    <path d="M438 302 L436 384 M438 302 L490 322" stroke-width="16"/>
+  </g>
+  <circle cx="452" cy="190" r="25" fill="#FFC9D6"/>
+
+  <!-- A few beats in the air -->
+  <g fill="#FFC21A">
+    <circle cx="60" cy="250" r="6"/>
+    <circle cx="208" cy="196" r="5"/>
+    <circle cx="366" cy="300" r="6"/>
+  </g>
+  <g fill="#FFFFFF" opacity="0.8">
+    <circle cx="520" cy="330" r="5"/>
+    <circle cx="214" cy="330" r="4"/>
+  </g>
+</svg>
