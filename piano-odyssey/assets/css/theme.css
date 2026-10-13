@@ -92,3 +92,6 @@
   .brand-logo { height: 68px; }
   .wordmark > span { display: none; }
 }
+
+/* The studio tagline, in the footer. */
+.site-footer .footer-tagline { font: 400 1.6rem/1.2 var(--display); font-style: normal; color: var(--ink-900); margin: var(--s3) 0 0; }
