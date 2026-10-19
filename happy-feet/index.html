@@ -233,12 +233,38 @@
             </select>
           </div>
           <div class="field">
-            <label for="hf-child">Child’s age <span class="hint">(for early-years enquiries)</span></label>
-            <input id="hf-child" name="child_age" type="text">
+            <label for="hf-child-name">Child’s name</label>
+            <input id="hf-child-name" name="child_name" type="text">
+          </div>
+          <div class="pair" data-child-fields>
+            <div class="field">
+              <label for="hf-child-dob">Child’s date of birth</label>
+              <input id="hf-child-dob" name="child_dob" type="date">
+            </div>
+            <div class="field">
+              <label for="hf-child-gender">Child’s gender</label>
+              <select id="hf-child-gender" name="child_gender">
+                <option value="">Choose one</option>
+                <option>Girl</option>
+                <option>Boy</option>
+              </select>
+            </div>
           </div>
           <div class="field">
             <label for="hf-times">Preferred days and times <span class="hint">(optional, not needed for the Sunday class)</span></label>
             <input id="hf-times" name="preferred_times" type="text">
+          </div>
+          <div class="field">
+            <label for="hf-heard">How did you hear about us?</label>
+            <select id="hf-heard" name="heard" required>
+              <option value="">Choose one</option>
+              <option>Through a friend</option>
+              <option>Google, Facebook or Instagram</option>
+              <option>Google Maps</option>
+              <option>Website</option>
+              <option>Poster at the studio</option>
+              <option>Other</option>
+            </select>
           </div>
           <div class="field">
             <label for="hf-message">Your message</label>
@@ -312,6 +338,20 @@
 
   <script src="assets/js/config.js"></script>
   <script src="assets/js/site.js"></script>
+  <script>
+    // The child's details are needed for the Sunday class only, so they are
+    // required when that option is chosen and optional for the other programmes.
+    (function () {
+      var interest = document.getElementById("hf-interest");
+      var fields = document.querySelectorAll("#hf-child-name, #hf-child-dob, #hf-child-gender");
+      function update() {
+        var child = interest.selectedIndex === 0;
+        fields.forEach(function (field) { field.required = child; });
+      }
+      interest.addEventListener("change", update);
+      update();
+    })();
+  </script>
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script defer src="/_vercel/insights/script.js"></script>
 </body>
