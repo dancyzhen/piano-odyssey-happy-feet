@@ -368,6 +368,9 @@ a:hover { color: var(--rose-700); }
 .field select:user-invalid,
 .field textarea:user-invalid { border-bottom-color: var(--error); }
 .form-help { font-size: 14px; line-height: 1.5; color: var(--ink-700); }
+.consent { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; line-height: 1.5; color: var(--ink-700); }
+.consent label { cursor: pointer; }
+.consent input { flex: none; width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--navy-600); }
 .form-status {
   display: none;
   background: var(--sun-100);

@@ -62,6 +62,7 @@
       var email = "";
       var lines = [];
       form.querySelectorAll("[name]").forEach(function (field) {
+        if ((field.type === "checkbox" || field.type === "radio") && !field.checked) return;
         var value = field.value.trim();
         if (!value) return;
         if (field.name === "name") { name = value; return; }
