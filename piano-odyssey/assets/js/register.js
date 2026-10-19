@@ -95,7 +95,7 @@
       .catch(function () {
         button.disabled = false;
         button.textContent = "Submit registration";
-        fail("Sorry, your registration could not be sent. Please check your connection and try again, or email thepianoodyssey@gmail.com.");
+        fail("Sorry, your registration could not be sent. Please check your connection and try again, or email yunzhen@thepianoodyssey.sg.");
       });
   });
 })();

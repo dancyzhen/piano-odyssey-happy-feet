@@ -18,7 +18,7 @@ if (["localhost", "127.0.0.1", "[::1]"].indexOf(location.hostname) !== -1) {
 }
 
 window.SITE_CONTACT = {
-  email: "thepianoodyssey@gmail.com",
+  email: "yunzhen@thepianoodyssey.sg",
   whatsapp: "6588698587"
 };
 
